@@ -1,6 +1,4 @@
-require 'date'
 require './lib/enigma'
-
 RSpec.describe Enigma do
 
   before :each do
