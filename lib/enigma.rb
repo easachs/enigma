@@ -1,5 +1,4 @@
 require 'date'
-
 class Enigma
 
   attr_reader :characters
@@ -11,12 +10,12 @@ class Enigma
   end
 
   def encrypt(message, key = @autokey, date = @today)
-    encrypted = "placeholder"
+    encrypted = 'placeholder'
     encrypt_hash = { encryption: encrypted, key: key, date: date }
   end
 
   def decrypt(cipher, key, date = @today)
-    decrypted = "placeholder"
+    decrypted = 'placeholder'
     decrypt_hash = { decryption: decrypted, key: key, date: date }
   end
 end
