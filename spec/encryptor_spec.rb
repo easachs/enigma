@@ -1,6 +1,5 @@
 require './lib/encryptor'
 RSpec.describe Encryptor do
-
   before :each do
     @encryptor = Encryptor.new('hello world', '02715', '040895')
     @encrypt = @encryptor.encrypt

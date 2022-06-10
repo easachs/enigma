@@ -1,6 +1,5 @@
 require './lib/decryptor'
 RSpec.describe Decryptor do
-
   before :each do
     @decryptor = Decryptor.new('keder ohulw', '02715', '040895')
     @decrypt = @decryptor.decrypt

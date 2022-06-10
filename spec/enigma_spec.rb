@@ -1,6 +1,5 @@
 require './lib/enigma'
 RSpec.describe Enigma do
-
   before :each do
     @enigma = Enigma.new
     @encrypt = @enigma.encrypt('hello world', '02715', '040895')

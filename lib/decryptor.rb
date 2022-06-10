@@ -1,5 +1,4 @@
 class Decryptor
-
   # attr_reader :characters
 
   def initialize(cipher, key, date)
@@ -18,7 +17,7 @@ class Decryptor
 
   def shifts(key, date)
     shift_array = []
-    offsets = (date.to_i ** 2).to_s[-4..-1]
+    offsets = (date.to_i**2).to_s[-4..-1]
     a_shift = key[0..1].to_i + offsets[0].to_i
     b_shift = key[1..2].to_i + offsets[1].to_i
     c_shift = key[2..3].to_i + offsets[2].to_i
