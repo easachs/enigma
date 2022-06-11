@@ -52,15 +52,15 @@ RSpec.describe Encryptor do
   end
 
   it 'can created chunked coded array' do
-    expect(@encryptor.coded_array).to be_a(Array)
-    expect(@encryptor.coded_array.first).to be_a(Array)
-    expect(@encryptor.coded_array.first).to eq(['k', 'e', 'd', 'e'])
-    expect(@encryptor.coded_array.last).to eq(['u', 'l', 'w'])
+    expect(@encryptor.letters_array).to be_a(Array)
+    expect(@encryptor.letters_array.first).to be_a(Array)
+    expect(@encryptor.letters_array.first).to eq(['k', 'e', 'd', 'e'])
+    expect(@encryptor.letters_array.last).to eq(['u', 'l', 'w'])
   end
 
   it 'can join chunked coded array' do
-    expect(@encryptor.encrypted).to be_a(String)
-    expect(@encryptor.encrypted).to eq('keder ohulw')
+    expect(@encryptor.solution).to be_a(String)
+    expect(@encryptor.solution).to eq('keder ohulw')
   end
 
   it 'can encrypt' do
