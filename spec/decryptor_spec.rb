@@ -4,6 +4,9 @@ RSpec.describe Decryptor do
     @decryptor = Decryptor.new('keder ohulw', '02715', '040895')
     @decrypt = @decryptor.decrypt
     @decrypted = { decryption: 'hello world', key: '02715', date: '040895' }
+
+    @special_decrypt = Decryptor.new('k3d10 o@ulw!@#$%^&*(', '02715', '040895').decrypt
+    @special_decrypted = { decryption: 'h3l10 w@rld!@#$%^&*(', key: '02715', date: '040895' }
   end
 
   it 'exists' do
@@ -13,13 +16,13 @@ RSpec.describe Decryptor do
   it 'can convert char to char_index' do
     expect(@decryptor.char_to_index('a')).to eq(['a', 0])
     expect(@decryptor.char_to_index(' ')).to eq([' ', 26])
-    expect(@decryptor.char_to_index('#')).to be(nil)
+    expect(@decryptor.char_to_index('#')).to eq(['#'])
   end
 
   it 'can convert num to char_index' do
     expect(@decryptor.num_to_index(0)).to eq(['a', 0])
     expect(@decryptor.num_to_index(26)).to eq([' ', 26])
-    expect(@decryptor.num_to_index(27)).to be(nil)
+    expect(@decryptor.num_to_index('#')).to eq(['#'])
   end
 
   it 'can create chunked message array' do
@@ -33,7 +36,6 @@ RSpec.describe Decryptor do
     expect(@decryptor.indexed_array).to be_a(Array)
     expect(@decryptor.indexed_array.first).to be_a(Array)
     expect(@decryptor.indexed_array.first).to eq([10, 4, 3, 4])
-    expect(@decryptor.indexed_array.first.first).to eq(10)
   end
 
   it 'can create shifts array' do
@@ -46,6 +48,7 @@ RSpec.describe Decryptor do
     expect(@decryptor.backshifted_array).to be_a(Array)
     expect(@decryptor.backshifted_array.first).to be_a(Array)
     expect(@decryptor.backshifted_array.first).to eq([7, 4, 11, 11])
+    expect(@decryptor.backshifted_array.last).to eq([17, 11, 3])
   end
 
   it 'can created chunked coded array' do
@@ -56,8 +59,8 @@ RSpec.describe Decryptor do
   end
 
   it 'can join chunked coded array' do
-    expect(@decryptor.decrypted_message).to be_a(String)
-    expect(@decryptor.decrypted_message).to eq('hello world')
+    expect(@decryptor.decrypted).to be_a(String)
+    expect(@decryptor.decrypted).to eq('hello world')
   end
 
   it 'can decrypt' do
@@ -66,5 +69,9 @@ RSpec.describe Decryptor do
     expect(@decrypt[:key]).to eq('02715')
     expect(@decrypt[:date]).to eq('040895')
     expect(@decrypt).to eq(@decrypted)
+  end
+
+  it 'can decrypt with special characters' do
+    expect(@special_decrypt).to eq(@special_decrypted)
   end
 end
