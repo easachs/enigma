@@ -13,4 +13,4 @@ writer = File.open(writer_src, 'w')
 writer.write(encrypted[:encryption])
 writer.close
 
-puts "Created '#{ARGV[0]}' with the key #{encrypted[:key]} and date #{encrypted[:date]}"
+puts "Created '#{ARGV[1]}' with the key #{encrypted[:key]} and date #{encrypted[:date]}"
