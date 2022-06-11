@@ -5,8 +5,8 @@ RSpec.describe Encryptor do
     @encrypt = @encryptor.encrypt
     @encrypted = { encryption: 'keder ohulw', key: '02715', date: '040895' }
 
-    @special_encrypt = Encryptor.new('h3l10 w@rld!!1@#$%^&*()', '02715', '040895').encrypt
-    @special_encrypted = { encryption: 'k3d10 o@ulw!!1@#$%^&*()', key: '02715', date: '040895' }
+    @special_encrypt = Encryptor.new('h3l10 w@rld!@#$%^&*(', '02715', '040895').encrypt
+    @special_encrypted = { encryption: 'k3d10 o@ulw!@#$%^&*(', key: '02715', date: '040895' }
   end
 
   it 'exists' do
@@ -73,6 +73,5 @@ RSpec.describe Encryptor do
 
   it 'can encrypt with special characters' do
     expect(@special_encrypt).to eq(@special_encrypted)
-    require "pry"; binding.pry
   end
 end

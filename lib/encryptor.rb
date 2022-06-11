@@ -8,7 +8,7 @@ class Encryptor
   end
 
   def encrypt
-    encrypt_hash = { encryption: encrypted, key: @key, date: @date }
+    { encryption: encrypted, key: @key, date: @date }
   end
 
   def special_char(character)
@@ -25,7 +25,7 @@ class Encryptor
 
   def num_to_index(number)
     if special_char(number)
-      Array.new.push(number)
+      [].push(number)
     else
       @char_index.find { |num| num.last == number }
     end
@@ -45,7 +45,7 @@ class Encryptor
     shift_array = []
     offsets = (@date.to_i**2).to_s[-4..-1]
     index = 0
-    while index < 4 do
+    while index < 4
       shift_array << @key[index, 2].to_i + offsets[index].to_i
       index += 1
     end
@@ -56,7 +56,7 @@ class Encryptor
     new_array = []
     indexed_array.each do |chunk|
       new_chunk = []; index = 0
-      while index < 4 do
+      while index < 4
         if special_char(chunk[index])
           new_chunk << chunk[index] unless chunk[index].nil?
         else
