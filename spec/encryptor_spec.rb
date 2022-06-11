@@ -4,6 +4,9 @@ RSpec.describe Encryptor do
     @encryptor = Encryptor.new('hello world', '02715', '040895')
     @encrypt = @encryptor.encrypt
     @encrypted = { encryption: 'keder ohulw', key: '02715', date: '040895' }
+
+    @special_encrypt = Encryptor.new('h3l10 w@rld!!1@#$%^&*()', '02715', '040895').encrypt
+    @special_encrypted = { encryption: 'k3d10 o@ulw!!1@#$%^&*()', key: '02715', date: '040895' }
   end
 
   it 'exists' do
@@ -13,13 +16,13 @@ RSpec.describe Encryptor do
   it 'can convert char to char_index' do
     expect(@encryptor.char_to_index('a')).to eq(['a', 0])
     expect(@encryptor.char_to_index(' ')).to eq([' ', 26])
-    expect(@encryptor.char_to_index('#')).to be(nil)
+    expect(@encryptor.char_to_index('#')).to eq(['#'])
   end
 
   it 'can convert num to char_index' do
     expect(@encryptor.num_to_index(0)).to eq(['a', 0])
     expect(@encryptor.num_to_index(26)).to eq([' ', 26])
-    expect(@encryptor.num_to_index(27)).to be(nil)
+    expect(@encryptor.num_to_index('#')).to eq(['#'])
   end
 
   it 'can create chunked message array' do
@@ -56,8 +59,8 @@ RSpec.describe Encryptor do
   end
 
   it 'can join chunked coded array' do
-    expect(@encryptor.encrypted_message).to be_a(String)
-    expect(@encryptor.encrypted_message).to eq('keder ohulw')
+    expect(@encryptor.encrypted).to be_a(String)
+    expect(@encryptor.encrypted).to eq('keder ohulw')
   end
 
   it 'can encrypt' do
@@ -66,5 +69,10 @@ RSpec.describe Encryptor do
     expect(@encrypt[:key]).to eq('02715')
     expect(@encrypt[:date]).to eq('040895')
     expect(@encrypt).to eq(@encrypted)
+  end
+
+  it 'can encrypt with special characters' do
+    expect(@special_encrypt).to eq(@special_encrypted)
+    require "pry"; binding.pry
   end
 end
