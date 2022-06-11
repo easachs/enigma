@@ -33,7 +33,6 @@ RSpec.describe Encryptor do
     expect(@encryptor.indexed_array).to be_a(Array)
     expect(@encryptor.indexed_array.first).to be_a(Array)
     expect(@encryptor.indexed_array.first).to eq([7, 4, 11, 11])
-    expect(@encryptor.indexed_array.first.first).to eq(7)
   end
 
   it 'can create shifts array' do
