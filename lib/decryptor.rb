@@ -1,13 +1,5 @@
-require_relative 'codable'
-class Decryptor
-  include Codable
-
-  def initialize(message, key, date)
-    @message = message.downcase
-    @key = key
-    @date = date
-    @char_index = (('a'..'z').to_a << ' ').each_with_index.to_a
-  end
+require_relative 'cipher'
+class Decryptor < Cipher
 
   def decrypt
     { decryption: solution, key: @key, date: @date }
