@@ -1,14 +1,18 @@
 module Codable
 
+  def char_index
+    (('a'..'z').to_a << ' ').each_with_index.to_a
+  end
+
   def special_char(character)
-    !@char_index.flatten.include?(character)
+    !char_index.flatten.include?(character)
   end
 
   def char_to_index(character)
     if special_char(character)
       character.chars
     else
-      @char_index.find { |char| char.first == character }
+      char_index.find { |char| char.first == character }
     end
   end
 
@@ -16,12 +20,12 @@ module Codable
     if special_char(number)
       [].push(number)
     else
-      @char_index.find { |num| num.last == number }
+      char_index.find { |num| num.last == number }
     end
   end
 
   def message_array
-    @message.chars.each_slice(4).to_a
+    @message.downcase.chars.each_slice(4).to_a
   end
 
   def indexed_array
