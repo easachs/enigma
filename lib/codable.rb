@@ -1,5 +1,4 @@
 module Codable
-
   def char_index
     (('a'..'z').to_a << ' ').each_with_index.to_a
   end
