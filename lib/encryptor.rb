@@ -61,5 +61,4 @@ class Encryptor
   def encrypted_message
     coded_array.join
   end
-
 end
