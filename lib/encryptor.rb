@@ -8,15 +8,27 @@ class Encryptor
   end
 
   def encrypt
-    encrypt_hash = { encryption: encrypted_message, key: @key, date: @date }
+    encrypt_hash = { encryption: encrypted, key: @key, date: @date }
+  end
+
+  def special_char(character)
+    !@char_index.flatten.include?(character)
   end
 
   def char_to_index(character)
-    @char_index.find { |char| char.first == character }
+    if special_char(character)
+      character.chars
+    else
+      @char_index.find { |char| char.first == character }
+    end
   end
 
   def num_to_index(number)
-    @char_index.find { |num| num.last == number }
+    if special_char(number)
+      Array.new.push(number)
+    else
+      @char_index.find { |num| num.last == number }
+    end
   end
 
   def message_array
@@ -32,21 +44,26 @@ class Encryptor
   def shifts_array
     shift_array = []
     offsets = (@date.to_i**2).to_s[-4..-1]
-    a_shift = @key[0..1].to_i + offsets[0].to_i
-    b_shift = @key[1..2].to_i + offsets[1].to_i
-    c_shift = @key[2..3].to_i + offsets[2].to_i
-    d_shift = @key[3..4].to_i + offsets[3].to_i
-    shift_array.push(a_shift, b_shift, c_shift, d_shift)
+    index = 0
+    while index < 4 do
+      shift_array << @key[index, 2].to_i + offsets[index].to_i
+      index += 1
+    end
+    shift_array
   end
 
   def shifted_array
     new_array = []
     indexed_array.each do |chunk|
-      new_chunk = []
-      new_chunk << (chunk[0] + shifts_array[0]) % 27 unless chunk[0].nil?
-      new_chunk << (chunk[1] + shifts_array[1]) % 27 unless chunk[1].nil?
-      new_chunk << (chunk[2] + shifts_array[2]) % 27 unless chunk[2].nil?
-      new_chunk << (chunk[3] + shifts_array[3]) % 27 unless chunk[3].nil?
+      new_chunk = []; index = 0
+      while index < 4 do
+        if special_char(chunk[index])
+          new_chunk << chunk[index] unless chunk[index].nil?
+        else
+          new_chunk << (chunk[index] + shifts_array[index]) % 27
+        end
+        index += 1
+      end
       new_array << new_chunk
     end
     new_array
@@ -58,7 +75,7 @@ class Encryptor
     end
   end
 
-  def encrypted_message
+  def encrypted
     coded_array.join
   end
 end
