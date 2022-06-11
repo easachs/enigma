@@ -45,22 +45,22 @@ RSpec.describe Decryptor do
   end
 
   it 'can created chunked shifted array' do
-    expect(@decryptor.backshifted_array).to be_a(Array)
-    expect(@decryptor.backshifted_array.first).to be_a(Array)
-    expect(@decryptor.backshifted_array.first).to eq([7, 4, 11, 11])
-    expect(@decryptor.backshifted_array.last).to eq([17, 11, 3])
+    expect(@decryptor.shifted_array).to be_a(Array)
+    expect(@decryptor.shifted_array.first).to be_a(Array)
+    expect(@decryptor.shifted_array.first).to eq([7, 4, 11, 11])
+    expect(@decryptor.shifted_array.last).to eq([17, 11, 3])
   end
 
   it 'can created chunked coded array' do
-    expect(@decryptor.decoded_array).to be_a(Array)
-    expect(@decryptor.decoded_array.first).to be_a(Array)
-    expect(@decryptor.decoded_array.first).to eq(['h', 'e', 'l', 'l'])
-    expect(@decryptor.decoded_array.last).to eq(['r', 'l', 'd'])
+    expect(@decryptor.letters_array).to be_a(Array)
+    expect(@decryptor.letters_array.first).to be_a(Array)
+    expect(@decryptor.letters_array.first).to eq(['h', 'e', 'l', 'l'])
+    expect(@decryptor.letters_array.last).to eq(['r', 'l', 'd'])
   end
 
   it 'can join chunked coded array' do
-    expect(@decryptor.decrypted).to be_a(String)
-    expect(@decryptor.decrypted).to eq('hello world')
+    expect(@decryptor.solution).to be_a(String)
+    expect(@decryptor.solution).to eq('hello world')
   end
 
   it 'can decrypt' do
