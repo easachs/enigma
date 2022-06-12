@@ -1,3 +1,7 @@
-require_relative 'enigma'
+require_relative 'writer'
 
-Enigma.encrypt(ARGV[0], ARGV[1])
+if ARGV.length < 2
+  nil
+else
+  Writer.encrypt(ARGV[0], ARGV[1])
+end

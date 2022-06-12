@@ -20,6 +20,16 @@ RSpec.describe Enigma do
     expect(@enigma).to be_a(Enigma)
   end
 
+  it 'can generate a key' do
+    expect(@enigma.autokey).to be_a(String)
+    expect(@enigma.autokey.length).to eq(5)
+  end
+
+  it 'can generate current date' do
+    expect(@enigma.today).to be_a(String)
+    expect(@enigma.today.length).to eq(6)
+  end
+
   it 'can encrypt' do
     expect(@encrypt).to eq(@encrypted)
   end
