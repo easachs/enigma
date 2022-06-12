@@ -15,4 +15,8 @@ class Enigma
   def decrypt(cipher, key, date = @today)
     Decryptor.new(cipher, key, date).decrypt
   end
+
+  def crack(cipher, date = @today)
+    Cracker.new(cipher, date).crack
+  end
 end
