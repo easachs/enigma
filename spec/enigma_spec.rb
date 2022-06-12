@@ -32,7 +32,11 @@ RSpec.describe Enigma do
     expect(@decrypt).to eq(@decrypted)
   end
 
-  # it 'can crack' do
-  #   expect(@crack).to eq(@cracked)
-  # end
+  it 'can crack' do
+    expect(@crack).to be_a(Hash)
+    expect(@crack[:decryption]).to eq('hello world end')
+    expect(@crack[:date]).to eq('291018')
+    # expect(@crack[:key]).to eq('08304')
+    # expect(@crack).to eq(@cracked)
+  end
 end
