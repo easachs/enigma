@@ -12,42 +12,25 @@ class Cracker
     { decryption: solution, date: @date, key: placeholder }
   end
 
-  def message_four_bw
+  def message_four
     @message.downcase.chars[-4..-1].reverse
   end
 
-  def indexed_four_bw
-    message_four_bw.map { |letter| char_to_index(letter).last }
+  def indexed_four
+    message_four.map { |letter| char_to_index(letter).last }
   end
 
   def message_array
     @message.downcase.chars.reverse.each_slice(4).to_a
   end
 
-  def shifts_array_bw
+  def shifts_array
     shift_array = []
-    shift_array << (indexed_four_bw[0] - 3) % 27
-    shift_array << (indexed_four_bw[1] - 13) % 27
-    shift_array << (indexed_four_bw[2] - 4) % 27
-    shift_array << (indexed_four_bw[3] - 26) % 27
+    shift_array << (indexed_four[0] - 3) % 27
+    shift_array << (indexed_four[1] - 13) % 27
+    shift_array << (indexed_four[2] - 4) % 27
+    shift_array << (indexed_four[3] - 26) % 27
     shift_array
-  end
-
-  def shifted_array
-    new_array = []
-    indexed_array.each do |chunk|
-      new_chunk = []; index = 0
-      while index < 4
-        if special_char(chunk[index])
-          new_chunk << chunk[index] unless chunk[index].nil?
-        else
-          new_chunk << (chunk[index] - shifts_array_bw[index]) % 27
-        end
-        index += 1
-      end
-      new_array << new_chunk
-    end
-    new_array
   end
 
   def letters_array
