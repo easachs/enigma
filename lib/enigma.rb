@@ -1,5 +1,6 @@
 require_relative 'encryptor'
 require_relative 'decryptor'
+require_relative 'cracker'
 require 'date'
 class Enigma
   attr_reader :today, :autokey
