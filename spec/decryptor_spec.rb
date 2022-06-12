@@ -51,7 +51,7 @@ RSpec.describe Decryptor do
     expect(@decryptor.shifted_array.last).to eq([17, 11, 3])
   end
 
-  it 'can created chunked coded array' do
+  it 'can created chunked letters array' do
     expect(@decryptor.letters_array).to be_a(Array)
     expect(@decryptor.letters_array.first).to be_a(Array)
     expect(@decryptor.letters_array.first).to eq(['h', 'e', 'l', 'l'])
