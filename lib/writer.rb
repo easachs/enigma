@@ -26,4 +26,16 @@ class Writer
     writer.close
     puts "Created '#{to}' with the key #{unencrypted[:key]} and date #{unencrypted[:date]}"
   end
+
+  def self.crack(from, to, date)
+    enigma = Enigma.new
+    encrypted = File.open(File.join('.', 'msgs', 'encrypted', from), 'r')
+    cipher = encrypted.read.chop
+    encrypted.close
+    unencrypted = enigma.crack(cipher, date)
+    writer = File.open(File.join('.', 'msgs', 'unencrypted', to), 'w')
+    writer.write(unencrypted[:decryption])
+    writer.close
+    puts "Created '#{to}' with the key #{unencrypted[:key]} and date #{unencrypted[:date]}"
+  end
 end
