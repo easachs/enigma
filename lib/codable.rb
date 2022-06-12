@@ -44,6 +44,24 @@ module Codable
     shift_array
   end
 
+  def shifted_array
+    new_array = []
+    indexed_array.each do |chunk|
+      new_chunk = []
+      index = 0
+      while index < 4
+        if special_char(chunk[index])
+          new_chunk << chunk[index] unless chunk[index].nil?
+        else
+          new_chunk << (chunk[index] - shifts_array[index]) % 27
+        end
+        index += 1
+      end
+      new_array << new_chunk
+    end
+    new_array
+  end
+
   def letters_array
     shifted_array.map do |chunk|
       chunk.map { |number| num_to_index(number).first }
