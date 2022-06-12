@@ -32,7 +32,7 @@ RSpec.describe Enigma do
     expect(@decrypt).to eq(@decrypted)
   end
 
-  xit 'can crack' do
-    expect(@crack).to eq(@cracked)
-  end
+  # it 'can crack' do
+  #   expect(@crack).to eq(@cracked)
+  # end
 end
