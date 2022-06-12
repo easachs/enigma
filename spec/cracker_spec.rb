@@ -11,15 +11,15 @@ RSpec.describe Cracker do
   end
 
   it 'can get reversed final four encrypted characters' do
-    expect(@cracker.message_four_bw).to be_a(Array)
-    expect(@cracker.message_four_bw.length).to eq(4)
-    expect(@cracker.message_four_bw).to eq(['i', 's', 's', 'h'])
+    expect(@cracker.message_four).to be_a(Array)
+    expect(@cracker.message_four.length).to eq(4)
+    expect(@cracker.message_four).to eq(['i', 's', 's', 'h'])
   end
 
   it 'can convert reversed final four characters' do
-    expect(@cracker.indexed_four_bw).to be_a(Array)
-    expect(@cracker.indexed_four_bw.length).to eq(4)
-    expect(@cracker.indexed_four_bw).to eq([8, 18, 18, 7])
+    expect(@cracker.indexed_four).to be_a(Array)
+    expect(@cracker.indexed_four.length).to eq(4)
+    expect(@cracker.indexed_four).to eq([8, 18, 18, 7])
   end
 
   it 'can convert char to char_index' do
@@ -48,9 +48,9 @@ RSpec.describe Cracker do
   end
 
   it 'can create reversed shifts array' do
-    expect(@cracker.shifts_array_bw).to be_a(Array)
-    expect(@cracker.shifts_array_bw.length).to eq(4)
-    expect(@cracker.shifts_array_bw).to eq([5, 5, 14, 8])
+    expect(@cracker.shifts_array).to be_a(Array)
+    expect(@cracker.shifts_array.length).to eq(4)
+    expect(@cracker.shifts_array).to eq([5, 5, 14, 8])
   end
 
   it 'can created reversed chunked shifted array' do
@@ -74,13 +74,14 @@ RSpec.describe Cracker do
 
   it 'can find date offset' do
     expect(@cracker.date_offset).to be_a(Array)
+    expect(@cracker.date_offset).to eq([6, 3, 2, 4])
   end
 
   it 'can crack' do
     expect(@crack).to be_a(Hash)
     expect(@crack[:decryption]).to eq('hello world end')
-    # expect(@crack[:key]).to eq('08304')
     expect(@crack[:date]).to eq('291018')
+    # expect(@crack[:key]).to eq('08304')
     # expect(@crack).to eq(@cracked)
   end
 end
