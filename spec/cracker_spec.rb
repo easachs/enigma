@@ -3,7 +3,7 @@ RSpec.describe Cracker do
   before :each do
     @cracker = Cracker.new('vjqtbeaweqihssi', '291018')
     @crack = @cracker.crack
-    @cracked = { decryption: "hello world end", date: "291018", key: "08304" }
+    @cracked = { decryption: 'hello world end', date: '291018', key: '08304' }
   end
 
   it 'exists' do

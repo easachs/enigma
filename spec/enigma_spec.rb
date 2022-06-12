@@ -7,7 +7,7 @@ RSpec.describe Enigma do
     @decrypt = @enigma.decrypt('keder ohulw', '02715', '040895')
     @decrypted = { decryption: 'hello world', key: '02715', date: '040895' }
     @crack = @enigma.crack('vjqtbeaweqihssi', '291018')
-    @cracked = { decryption: "hello world end", date: "291018", key: "08304" }
+    @cracked = { decryption: 'hello world end', date: '291018', key: '08304' }
   end
 
   it 'exists' do
